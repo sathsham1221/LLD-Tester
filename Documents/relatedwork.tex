@@ -1,0 +1,32 @@
+
+% check if the in-text citations are good. 
+ \section{Related work}\vspace{3 mm}
+
+There are numerous Unit testing frameworks and tools available for various different languages.  The \url{http://en.wikipedia.org/wiki/List_of_unit_testing_frameworks} lists majority of available unit testing frameworks.  \\
+Most of current research is happening on unit testing framework for object oriented languages especially Java.  The Junit (\url{http://junit.org/}) is most famous framework available for unit testing Java based object oriented code and researches are happening in the direction of optimizing test suite based on automated unit testing of Java code using Junit.\\
+\begin{sloppypar}
+(\url{http://www.ist.tugraz.at/teaching/pub/Main/QS/cheon-leavens04_jmlunit.pdf}) and unit testing concurrent programs using Junit (\url{http://www.cs.rice.edu/~javaplt/drjava/papers/PPPJ2009-Ricken-ConcJUnit.pdf}) .\\
+\end{sloppypar}
+There are some existing frameworks for unit testing C code, but there are no noticeable researches which we are aware in unit testing for C code.  One of the famous available unit testing frameworks for C is Cunit (\url{http://cunit.sourceforge.net/}) . The CuTest is a simple and lightweight framework (\url{http://cutest.sourceforge.net/}).   However the existing majority of frameworks are available in user space and good in unit testing user level programs but not kernel code.   \\
+The kernel itself and its parts are tested prior to the release, but these tests cover only the basic functionality. There are some testing systems which perform testing of Linux Kernel:\\
+
+The Linux Test Project (LTP) delivers test suites to the open source community that validates the reliability and stability of Linux. The LTP test suite contains a collection of tools for testing the Linux kernel and related features. \url{https://github.com/linux-test-project/ltp} \\
+
+Autotest -- a framework for fully automated testing. It is designed primarily to test the Linux kernel, though it is useful for many other purposes such as qualifying new hardware, virtualization testing, and other general user space program testing under Linux platforms. It's an open-source project under the GPL and is used and developed by a number of organizations, including Google, IBM, Red Hat, and many others. \url{http://autotest.kernel.org} \\
+
+Also there are certification systems developed by some major GNU/Linux distribution companies. These systems usually check complete GNU/Linux distributions for compatibility with hardware. There are certification systems developed by Novell, Red Hat, Oracle, Canonical, Google.\\
+
+There are also systems for dynamic analysis of Linux kernel: \\
+
+Kmemleak is a memory leak detector included in the Linux kernel. It provides a way of detecting possible kernel memory leaks in a way similar to a tracing garbage collector with the difference that the orphan objects are not freed but only reported via /sys/kernel/debug/kmemleak. \\
+
+Kmemcheck traps every read and write to memory that was allocated dynamically (i.e. with kmalloc()). If a memory address is read that has not previously been written to, a message is printed to the kernel log. Also is a part of Linux Kernel. \\
+
+Fault Injection Framework (included in Linux kernel) allows for infusing errors and exceptions into an application's logic to achieve a higher coverage and fault tolerance of the system. \\
+
+Though there are complex test suits like LTP, Autotest are available, there are thousands of combination of devices, kernels, device drivers possible for testing and testing everything is beyond the scope of a centralized automatic test suite, hence majority of Linux kernel testing is dependent on developers who develop a particular kernel module or device drivers.   \\
+
+As stated previously the LLD are developed by developers employed in hardware vendor organization and dedicating their time in validating using complex framework like LTP is highly impossible and the LLD tester is light weight and specifically targeted for LLD.\\
+
+
+

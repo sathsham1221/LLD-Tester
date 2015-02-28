@@ -1,0 +1,17 @@
+\section{Evaluation}\vspace{3 mm}
+
+\par The scsi\_debug driver is sample LLD without needing any actual hardware.  The LLDT will be validated with the scsi\_debug driver initially.  The LLDT functionality will be evaluated with the scsi\_debug by creating one or more positive/negative test cases for the scsi\_debug interfaces.  The test execution and defect details if any will be captured.  Once the LLDT is tested with confidence the tests will be executed on one or more real drivers. Obtaining actual SCSI host controllers for this testing is time and cost prone, hence the virtual machines which expose one or more host controllers will be used and the tests will be executed on the drivers for the virtual machine exposed pseudo host controllers.  \\
+
+The test results and defect if any will be shared with the owners of the particular driver  or through  Linux SCSI driver development community and based on their acceptance of the defect the efficiency of the LLDT can be measured. \\
+
+There is no standard test suite for validating of Linux kernel modules especially the LLD.  So using the LLD tester we need to write test cases for various interfaces of LLD and make sure that the test cases are effective by adding mutants in the LLD interface and confirming the test case identifies the mutant.\\
+
+For example, if you take queuecommand interface, the expected return value of the interface for successful queuing of I/O request is 0 and all other failure cases the queue command has to return non zero values. We might write a test case to validate whether a wrong invocation of queuecommand will properly return error value but to validate whether our test properly reports the error we need to modify the queuecommand interface under test to return 0 for failures and make sure the test case prints the failure properly.\\
+
+\subsection{Threats to Validity}
+
+\begin{sloppypar}For generating mutants, we used the mutation tool MiLu. We tried it on scsi\_debug.c which is a sample driver which will be used with LLDT.  We just did try to create a mutant for the function ``scsi\_debug\_queuecommand\_lck”.\\
+\end{sloppypar}
+
+This did work partially and the problem is the mutated code was not having some important data structure pointers and initializations.  The first thing we noticed was that MiLu requires the source file to be run with for example ``gcc -E". This is stated in the information about MiLu. This means that the source file needs to be run through the preprocessor before MiLu is able to mutate the file but the problem is we are compiling the kernel code and we do not have all the headers require for generic preprocessing to be successful.  We further need to explore how to overcome this though we have a limited set of tools available for C, there seems to be no tool to mutate the kernel code.
+
