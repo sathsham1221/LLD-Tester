@@ -1,0 +1,9 @@
+\textbf{Abstract}\vspace{3 mm}
+
+In Linux Kernel, the SCSI storage drivers are maintained as three different levels, the high level drivers handles device specific code, the middle level is a core layer which provides the primary functionality of the SCSI subsystem and the Low Level Drivers (LLD) which contains hardware specific code. Since the LLD are hardware specific, they are predominantly developed by hardware vendors whereas the Upper Level and Middle Level drivers are mostly implemented by the open source developers who are responsible for the SCSI subsystem maintenance.
+
+Since the LLD are developed by developers from vast number of hardware vendor organization, the LLD are highly error prone compare to other part of the SCSI stack.  There was no tool available for the developers to verify the functionality of LLD at unit level as most of the unit test frameworks are currently available only for user space applications.  
+
+This paper presents a tool which assist LLD developers to verify the code at individual function level.  The tool is implemented as a kernel module with a helper application. The developers of LLD need to modify their code to register the LLD interfaces with LLD tester and the LLD tester will execute the interfaces with many possible input parameters and provide a report on what tests are passed and what are failed.   The LLD tester tool is executed against the sample LLD for RAM disk provided as part of Linux kernel and on XYZ driver and captured N number of errors.
+
+
